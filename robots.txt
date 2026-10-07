@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ultranovasanjo-collab.github.io/Ultranova-San-Jose/sitemap.xml
