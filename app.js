@@ -612,13 +612,13 @@
       var im = new Image();
       im.onload = function () {
         try {
-          var cv = document.createElement('canvas'), w = 360, h = Math.round(360 * im.naturalHeight / im.naturalWidth);
-          cv.width = w; cv.height = h; var cx = cv.getContext('2d'); cx.fillStyle = 'rgb(10,26,58)'; cx.fillRect(0, 0, w, h); cx.drawImage(im, 0, 0, w, h);
+          var cv = document.createElement('canvas'), w = 560, h = Math.round(560 * im.naturalHeight / im.naturalWidth);
+          cv.width = w; cv.height = h; var cx = cv.getContext('2d'); cx.fillStyle = '#fff'; cx.fillRect(0, 0, w, h); cx.drawImage(im, 0, 0, w, h);
           logoCache = { data: cv.toDataURL('image/jpeg', 0.92), r: w / h }; ok(logoCache);
         } catch (e) { logoCache = false; ok(false); }
       };
       im.onerror = function () { logoCache = false; ok(false); };
-      im.src = 'logo-blanco.png';
+      im.src = 'logo.png';
     });
   }
   function pdfT(x) { return String(x).replace(/²/g, '2'); }
@@ -632,7 +632,7 @@
     if (dibujar) {
       doc.setFillColor(NAVY[0], NAVY[1], NAVY[2]); doc.rect(0, 0, W, 34, 'F');
       doc.setFillColor(ORO[0], ORO[1], ORO[2]); doc.rect(0, 34, W, 1.4, 'F');
-      if (logo) { var lh = 24; doc.addImage(logo.data, 'JPEG', ML, 5, lh * logo.r, lh); }
+      if (logo) { var lh = 26; doc.setFillColor(255, 255, 255); doc.roundedRect(ML - 1, 3, lh * logo.r + 2, 28, 2, 2, 'F'); doc.addImage(logo.data, 'JPEG', ML, 4, lh * logo.r, lh); }
       else { doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.text(C.negocio, ML, 20); }
       doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold'); doc.setFontSize(20); doc.text('COTIZACIÓN', W - MR, 17, { align: 'right' });
       doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(ORO[0], ORO[1], ORO[2]);
